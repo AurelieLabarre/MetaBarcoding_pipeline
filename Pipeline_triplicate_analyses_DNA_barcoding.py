@@ -8,8 +8,8 @@ import os.path
 # --- Parameters ---
 # Leave space characters at beginning and end of parameter string!
 FLEXBAR_BARCODE_PARAM = ' -b /home/vincentm/aurelie/barcodes.fasta --threads 8 --barcode-unassigned --min-read-length 200 -be LEFT_TAIL -qt 22 --barcode-threshold 0 -t '
-FLEXBAR_PRIMERS_PARAM = ' -b /home/vincentm/aurelie/primers.fasta --threads 8 --barcode-unassigned --min-read-length 200 -be LEFT -bk -qt 22 --barcode-threshold 0 --fasta-output -t '
-VSEARCH_DEREPLICATE_PARAM = ' --threads 8 --dbmask none --qmask none --rowlen 0 --notrunclabels --userfields query+id1+target --maxaccepts 0 --maxrejects 32 --top_hits_only --output_no_hits --db "/home/vincentm/aurelie/stampa/db_2_ITS_all.fasta" --id "0.5" --iddef 1 '
+FLEXBAR_PRIMERS_PARAM = ' -b /home/vincentm/aurelie/primers.fasta --threads 8 --barcode-unassigned --min-read-length 300 -be LEFT -bk -qt 22 --barcode-threshold 2 --fasta-output -t '
+VSEARCH_DEREPLICATE_PARAM = ' --threads 8 --dbmask none --qmask none --rowlen 0 --notrunclabels --userfields query+id1+target --maxaccepts 0 --maxrejects 0 --output_no_hits --db "/home/vincentm/aurelie/db" --id "0.9" --iddef 1 '
 STAMPA_FOLDER = '/home/vincentm/aurelie/stampa'
 PYTHON = 'python2.7 '
 
@@ -161,7 +161,7 @@ for product in xrange(1, max_products + 1):
     swarm_filename = os.path.join(data[SWARM_DIR_PATH], \
                                   'swarm_' + os.path.splitext(os.path.basename(concatenated_filename))[0] + '.txt')
 
-    os.system('swarm -d 1 -f -w ' + representative_filename + ' -t 12 -s ' + stat_filename + ' < ' + concatenated_filename + ' > ' + swarm_filename)
+    os.system('swarm -d 3 -w ' + representative_filename + ' -t 12 -s ' + stat_filename + ' < ' + concatenated_filename + ' > ' + swarm_filename)
         
         
 
